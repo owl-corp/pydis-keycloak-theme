@@ -3,6 +3,7 @@ FROM node:20 as keycloakify_jar_builder
 RUN apt-get update && \
     apt-get install -y openjdk-17-jdk && \
     apt-get install -y maven;
+RUN npm install -g pnpm
 COPY package.json pnpm-lock.yaml /opt/app/
 WORKDIR /opt/app
 RUN pnpm install
