@@ -3,10 +3,10 @@ FROM node:20 as keycloakify_jar_builder
 RUN apt-get update && \
     apt-get install -y openjdk-17-jdk && \
     apt-get install -y maven;
-COPY ./keycloakify-starter/package.json ./keycloakify-starter/pnpm-lock.yaml /opt/app/
+COPY package.json pnpm-lock.yaml /opt/app/
 WORKDIR /opt/app
 RUN pnpm install
-COPY ./keycloakify-starter/ /opt/app/
+COPY . .
 RUN pnpm run build
 
 FROM quay.io/keycloak/keycloak:${KEYCLOAK_VERSION} as builder
