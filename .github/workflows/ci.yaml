@@ -55,6 +55,7 @@ jobs:
               tags: |
                 ghcr.io/owl-corp/keycloak:latest
                 ghcr.io/owl-corp/keycloak:${{ env.KEYCLOAK_VERSION }}
+                ghcr.io/owl-corp/keycloak:${{ github.sha }}
               build-args: |
                 KEYCLOAK_VERSION=${{ env.KEYCLOAK_VERSION }}
 
