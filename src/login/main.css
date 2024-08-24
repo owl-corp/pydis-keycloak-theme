@@ -1,0 +1,27 @@
+body.kcBodyClass {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2),
+            rgba(0, 0, 0, 0.4)), url("./assets/banner_pattern.svg");
+    background-size: 256px;
+    background-repeat: repeat;
+    height: 100%;
+}
+
+div.kc-logo-text {
+    background-image: url(./assets/pydis-light.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 85%;
+    height: 75px;
+    width: 300px;
+    margin: 0 auto;
+}
+
+@media (max-width: 767px) {
+    div.kc-logo-text {
+        margin: 0;
+        background-image: url(./assets/pydis-dark.png);
+        width: 150px;
+        height: 50px;
+        background-size: 100%;
+    }
+}
