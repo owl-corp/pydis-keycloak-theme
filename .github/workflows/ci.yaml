@@ -16,6 +16,7 @@ jobs:
             - uses: pnpm/action-setup@v4
               with:
                 version: 9
+            - run: pnpm install
             - run: pnpm run build-keycloak-theme
 
     check_if_version_upgraded:
@@ -45,6 +46,7 @@ jobs:
             - uses: pnpm/action-setup@v4
               with:
                 version: 9
+            - run: pnpm install
             - run: pnpm run build-keycloak-theme
             - uses: softprops/action-gh-release@v2
               with:
