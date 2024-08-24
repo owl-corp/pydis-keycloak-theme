@@ -1,7 +1,7 @@
 {
-    "name": "keycloakify-starter",
+    "name": "pydis-theme",
     "version": "0.0.1",
-    "description": "Starter for Keycloakify 10",
+    "description": "Python Discord theme for Keycloak",
     "repository": {
         "type": "git",
         "url": "git://github.com/codegouvfr/keycloakify-starter.git"
