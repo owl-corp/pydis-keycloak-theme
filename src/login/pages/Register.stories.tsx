@@ -1,7 +1,7 @@
 
 import type { Meta, StoryObj } from "@storybook/react";
 import { createKcPageStory } from "../KcPageStory";
-import type { Attribute } from "../../../dist/login";
+// import type { Attribute } from "../../../dist/login";
 
 const { KcPageStory } = createKcPageStory({ pageId: "register.ftl" });
 
@@ -99,7 +99,7 @@ export const WithFavoritePet: Story = {
                             },
                             required: false,
                             readOnly: false
-                        } satisfies Attribute
+                        }
                     }
                 },
                 "x-keycloakify": {
