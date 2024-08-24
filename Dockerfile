@@ -14,6 +14,7 @@ WORKDIR /opt/keycloak
 COPY --from=keycloakify_jar_builder /opt/app/dist_keycloak/keycloak-theme-for-kc-22-and-above.jar /opt/keycloak/providers/
 RUN /opt/keycloak/bin/kc.sh build
 
+ARG KEYCLOAK_VERSION=25.0.4
 FROM quay.io/keycloak/keycloak:${KEYCLOAK_VERSION}
 COPY --from=builder /opt/keycloak/ /opt/keycloak/
 
