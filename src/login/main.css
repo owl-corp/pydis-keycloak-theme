@@ -1,4 +1,5 @@
-body.kcBodyClass {
+body.kcBodyClass,
+.login-pf body {
     background-image: linear-gradient(rgba(0, 0, 0, 0.2),
             rgba(0, 0, 0, 0.4)), url("./assets/banner_pattern.svg");
     background-size: 256px;
