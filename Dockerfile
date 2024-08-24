@@ -13,6 +13,7 @@ RUN pnpm run build-keycloak-theme
 FROM quay.io/keycloak/keycloak:${KEYCLOAK_VERSION} as builder
 WORKDIR /opt/keycloak
 COPY --from=keycloakify_jar_builder /opt/app/dist_keycloak/keycloak-theme-for-kc-22-and-above.jar /opt/keycloak/providers/
+ENV KC_DB=postgres
 RUN /opt/keycloak/bin/kc.sh build
 
 FROM quay.io/keycloak/keycloak:${KEYCLOAK_VERSION}
