@@ -9,6 +9,9 @@ const kcContextExtension: KcContextExtension = {
     themeName: themeNames[0],
     properties: {
         ...kcEnvDefaults
+    },
+    realm: {
+        displayNameHtml: '<div class="kc-logo-text"><span>Python Discord</span></div>',
     }
 };
 const kcContextExtensionPerPage: KcContextExtensionPerPage = {};
