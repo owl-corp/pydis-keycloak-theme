@@ -8,7 +8,7 @@ COPY package.json pnpm-lock.yaml /opt/app/
 WORKDIR /opt/app
 RUN pnpm install
 COPY . .
-RUN pnpm run build
+RUN pnpm run build-keycloak-theme
 
 FROM quay.io/keycloak/keycloak:${KEYCLOAK_VERSION} as builder
 WORKDIR /opt/keycloak
