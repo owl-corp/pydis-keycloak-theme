@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       keycloakify:
-        specifier: 10.0.0-rc.147
-        version: 10.0.0-rc.147
+        specifier: 11.8.3
+        version: 11.8.3
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -2055,8 +2055,8 @@ packages:
   jsonfile@6.1.0:
     resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
 
-  keycloakify@10.0.0-rc.147:
-    resolution: {integrity: sha512-zC9UHchkctvh5EMs2jf9W5TK9q51N2OTPAt5UkQEbtl6X84m8gzoQ4nUlmMlsUoGgr/lfD8UsFA/oGczCtrDPw==}
+  keycloakify@11.8.3:
+    resolution: {integrity: sha512-XtkwDkpprQzTXRvfTGICi364Re2oUDfbJ0uH+XE+tyXtgY5hU2wJEGOJSYJEl6tMtt10REWJEX5CDUsmXgSTpQ==}
     hasBin: true
 
   keyv@4.5.4:
@@ -2717,8 +2717,8 @@ packages:
     resolution: {integrity: sha512-q5W7tVM71e2xjHZTlgfTDoPF/SmqKG5hddq9SzR49CH2hayqRKJtQ4mtRlSxKaJlR/+9rEM+mnBHf7I2/BQcpQ==}
     engines: {node: '>=6.10'}
 
-  tsafe@1.7.2:
-    resolution: {integrity: sha512-dAPfQLhCfCRre5qs+Z5Q2a7s2CV7RxffZUmvj7puGaePYjECzWREJFd3w4XSFe/T5tbxgowfItA/JSSZ6Ma3dA==}
+  tsafe@1.8.5:
+    resolution: {integrity: sha512-LFWTWQrW6rwSY+IBNFl2ridGfUzVsPwrZ26T4KUJww/py8rzaQ/SY+MIz6YROozpUCaRcuISqagmlwub9YT9kw==}
 
   tsconfig-paths@4.2.0:
     resolution: {integrity: sha512-NoZ4roiN7LnbKn9QqE1amc9DJfzvZXxF4xDavcOWt1BPkdx+m+0gJuPM+S0vCe7zTJMYUP0R8pO2XMr+Y8oLIg==}
@@ -5215,9 +5215,9 @@ snapshots:
     optionalDependencies:
       graceful-fs: 4.2.11
 
-  keycloakify@10.0.0-rc.147:
+  keycloakify@11.8.3:
     dependencies:
-      tsafe: 1.7.2
+      tsafe: 1.8.5
 
   keyv@4.5.4:
     dependencies:
@@ -5882,7 +5882,7 @@ snapshots:
 
   ts-dedent@2.2.0: {}
 
-  tsafe@1.7.2: {}
+  tsafe@1.8.5: {}
 
   tsconfig-paths@4.2.0:
     dependencies:
