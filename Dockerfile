@@ -14,9 +14,9 @@ FROM quay.io/keycloak/keycloak:${KEYCLOAK_VERSION} as builder
 WORKDIR /opt/keycloak
 COPY --from=keycloakify_jar_builder /opt/app/dist_keycloak/keycloak-theme-for-kc-all-other-versions.jar /opt/keycloak/providers/
 ENV KC_DB=postgres
-RUN /opt/keycloak/bin/kc.sh build --features="passkeys"
+RUN /opt/keycloak/bin/kc.sh build --features="passkeys" --metrics-enabled=true
 
 FROM quay.io/keycloak/keycloak:${KEYCLOAK_VERSION}
 COPY --from=builder /opt/keycloak/ /opt/keycloak/
 
-ENTRYPOINT ["/opt/keycloak/bin/kc.sh", "start", "--optimized", "--metrics-enabled=true"]
+ENTRYPOINT ["/opt/keycloak/bin/kc.sh", "start", "--optimized"]
