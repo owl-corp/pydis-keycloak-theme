@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       keycloakify:
-        specifier: 11.8.3
-        version: 11.8.3
+        specifier: 11.8.24
+        version: 11.8.24
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -2055,8 +2055,8 @@ packages:
   jsonfile@6.1.0:
     resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
 
-  keycloakify@11.8.3:
-    resolution: {integrity: sha512-XtkwDkpprQzTXRvfTGICi364Re2oUDfbJ0uH+XE+tyXtgY5hU2wJEGOJSYJEl6tMtt10REWJEX5CDUsmXgSTpQ==}
+  keycloakify@11.8.24:
+    resolution: {integrity: sha512-fYVtW1vsgkJ+k3ywE18GV5vBsFfHrCqwvRIWvXKS1VGuqk3eMTsUCsHqY1qRGNShDruQ33cpvoQNogYJ8GSRlg==}
     hasBin: true
 
   keyv@4.5.4:
@@ -5215,7 +5215,7 @@ snapshots:
     optionalDependencies:
       graceful-fs: 4.2.11
 
-  keycloakify@11.8.3:
+  keycloakify@11.8.24:
     dependencies:
       tsafe: 1.8.5
 
