@@ -1,4 +1,4 @@
-ARG KEYCLOAK_VERSION=25.0.4
+ARG KEYCLOAK_VERSION=26.2.1
 FROM node:20 as keycloakify_jar_builder
 RUN apt-get update && \
     apt-get install -y openjdk-17-jdk && \
@@ -19,4 +19,4 @@ RUN /opt/keycloak/bin/kc.sh build --features="passkeys"
 FROM quay.io/keycloak/keycloak:${KEYCLOAK_VERSION}
 COPY --from=builder /opt/keycloak/ /opt/keycloak/
 
-ENTRYPOINT ["/opt/keycloak/bin/kc.sh", "start", "--optimized"]
+ENTRYPOINT ["/opt/keycloak/bin/kc.sh", "start", "--optimized", "--metrics-enabled=true"]
