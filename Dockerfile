@@ -1,4 +1,4 @@
-ARG KEYCLOAK_VERSION=26.1.1
+ARG KEYCLOAK_VERSION=26.3.0
 FROM node:20 AS keycloakify_jar_builder
 RUN apt-get update && \
     apt-get install -y openjdk-17-jdk && \
