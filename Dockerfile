@@ -10,9 +10,15 @@ RUN pnpm install
 COPY . .
 RUN pnpm run build-keycloak-theme
 
+WORKDIR /tmp/provider-build
+COPY vendor/keycloak-providers .
+RUN mvn clean package -Drevision=release -DskipTests
+
 FROM quay.io/keycloak/keycloak:${KEYCLOAK_VERSION} AS builder
 WORKDIR /opt/keycloak
+# Build custom LDAP disabled provider from the vendor directory
 COPY --from=keycloakify_jar_builder /opt/app/dist_keycloak/keycloak-theme-for-kc-all-other-versions.jar /opt/keycloak/providers/
+COPY --from=keycloakify_jar_builder /tmp/provider-build/ldap-disabled-mapper/target/ldap-disabled-mapper-release.jar /opt/keycloak/providers/
 ENV KC_DB=postgres
 RUN /opt/keycloak/bin/kc.sh build --features="passkeys,scripts"
 
