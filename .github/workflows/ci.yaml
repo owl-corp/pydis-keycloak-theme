@@ -28,6 +28,8 @@ jobs:
         env:
             KEYCLOAK_VERSION: 26.5.4
             KEYCLOAK_GIT_REPO: https://github.com/owl-corp/keycloak.git
+            KEYCLOAK_BASELINE_REF: release/26.5
+            KEYCLOAK_PATCH_REF: origin/main
         steps:
           - name: Checkout repository
             uses: actions/checkout@v4
@@ -60,6 +62,8 @@ jobs:
               build-args: |
                 KEYCLOAK_VERSION=${{ env.KEYCLOAK_VERSION }}
                 KEYCLOAK_GIT_REPO=${{ env.KEYCLOAK_GIT_REPO }}
+                KEYCLOAK_BASELINE_REF=${{ env.KEYCLOAK_BASELINE_REF }}
+                KEYCLOAK_PATCH_REF=${{ env.KEYCLOAK_PATCH_REF }}
 
     check_if_version_upgraded:
         name: Check if version upgrade

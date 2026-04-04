@@ -1,17 +1,26 @@
 ARG KEYCLOAK_VERSION=26.5.4
 ARG KEYCLOAK_GIT_REPO=https://github.com/owl-corp/keycloak.git
+ARG KEYCLOAK_BASELINE_REF=release/26.5
+ARG KEYCLOAK_PATCH_REF=origin/main
 
 FROM maven:3.9.11-eclipse-temurin-21 AS keycloak_source_builder
 ARG KEYCLOAK_GIT_REPO
+ARG KEYCLOAK_BASELINE_REF
+ARG KEYCLOAK_PATCH_REF
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends git ca-certificates libicu-dev && \
     rm -rf /var/lib/apt/lists/*
 
-WORKDIR /build
-RUN git clone --depth 1 --branch main "${KEYCLOAK_GIT_REPO}" keycloak
-
 WORKDIR /build/keycloak
+RUN git clone "${KEYCLOAK_GIT_REPO}" /build/keycloak && \
+        git fetch --all --tags && \
+        PATCH_COMMIT="$(git rev-parse "${KEYCLOAK_PATCH_REF}")" && \
+        git checkout "${KEYCLOAK_BASELINE_REF}" && \
+        BASELINE_COMMIT="$(git rev-parse HEAD)" && \
+        if [ "${PATCH_COMMIT}" != "${BASELINE_COMMIT}" ]; then \
+            git cherry-pick --no-edit "${PATCH_COMMIT}"; \
+        fi
 RUN ./mvnw -pl quarkus/deployment,quarkus/dist -am -DskipTests clean install && \
     KEYCLOAK_TAR="$(ls quarkus/dist/target/keycloak-*.tar.gz | head -n 1)" && \
     mkdir -p /opt/keycloak && \
