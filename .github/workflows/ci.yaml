@@ -27,6 +27,7 @@ jobs:
         needs: test
         env:
             KEYCLOAK_VERSION: 26.5.4
+            KEYCLOAK_GIT_REPO: https://github.com/owl-corp/keycloak.git
         steps:
           - name: Checkout repository
             uses: actions/checkout@v4
@@ -58,6 +59,7 @@ jobs:
                 ghcr.io/owl-corp/keycloak:${{ github.sha }}
               build-args: |
                 KEYCLOAK_VERSION=${{ env.KEYCLOAK_VERSION }}
+                KEYCLOAK_GIT_REPO=${{ env.KEYCLOAK_GIT_REPO }}
 
     check_if_version_upgraded:
         name: Check if version upgrade

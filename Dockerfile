@@ -1,4 +1,25 @@
 ARG KEYCLOAK_VERSION=26.5.4
+ARG KEYCLOAK_GIT_REPO=https://github.com/owl-corp/keycloak.git
+
+FROM maven:3.9.11-eclipse-temurin-21 AS keycloak_source_builder
+ARG KEYCLOAK_GIT_REPO
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends git ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
+
+WORKDIR /build
+RUN git clone --depth 1 --branch master "${KEYCLOAK_GIT_REPO}" keycloak
+
+WORKDIR /build/keycloak
+RUN ./mvnw -pl quarkus/deployment,quarkus/dist -am -DskipTests clean install && \
+    KEYCLOAK_TAR="$(ls quarkus/dist/target/keycloak-*.tar.gz | head -n 1)" && \
+    mkdir -p /opt/keycloak && \
+    tar -xzf "${KEYCLOAK_TAR}" -C /opt/keycloak --strip-components=1
+
+FROM eclipse-temurin:21-jre-jammy AS keycloak_from_source
+COPY --from=keycloak_source_builder /opt/keycloak /opt/keycloak
+
 FROM node:20 AS keycloakify_jar_builder
 RUN apt-get update && \
     apt-get install -y openjdk-17-jdk && \
@@ -14,7 +35,7 @@ WORKDIR /tmp/provider-build
 COPY vendor/keycloak-providers .
 RUN mvn clean package -Drevision=release -DskipTests
 
-FROM quay.io/keycloak/keycloak:${KEYCLOAK_VERSION} AS builder
+FROM keycloak_from_source AS builder
 WORKDIR /opt/keycloak
 # Build custom LDAP disabled provider from the vendor directory
 COPY --from=keycloakify_jar_builder /opt/app/dist_keycloak/keycloak-theme-for-kc-all-other-versions.jar /opt/keycloak/providers/
@@ -22,7 +43,7 @@ COPY --from=keycloakify_jar_builder /tmp/provider-build/ldap-disabled-mapper/tar
 ENV KC_DB=postgres
 RUN /opt/keycloak/bin/kc.sh build --features="passkeys,scripts"
 
-FROM quay.io/keycloak/keycloak:${KEYCLOAK_VERSION}
+FROM keycloak_from_source
 COPY --from=builder /opt/keycloak/ /opt/keycloak/
 
 ENTRYPOINT ["/opt/keycloak/bin/kc.sh", "start", "--optimized"]
