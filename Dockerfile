@@ -5,7 +5,7 @@ FROM maven:3.9.11-eclipse-temurin-21 AS keycloak_source_builder
 ARG KEYCLOAK_GIT_REPO
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends git ca-certificates && \
+    apt-get install -y --no-install-recommends git ca-certificates libicu-dev && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /build
