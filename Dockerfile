@@ -9,7 +9,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /build
-RUN git clone --depth 1 --branch master "${KEYCLOAK_GIT_REPO}" keycloak
+RUN git clone --depth 1 --branch main "${KEYCLOAK_GIT_REPO}" keycloak
 
 WORKDIR /build/keycloak
 RUN ./mvnw -pl quarkus/deployment,quarkus/dist -am -DskipTests clean install && \
