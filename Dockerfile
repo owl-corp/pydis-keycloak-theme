@@ -1,4 +1,4 @@
-ARG KEYCLOAK_VERSION=26.5.7
+ARG KEYCLOAK_VERSION=26.7.0
 
 FROM maven:3.9.11-eclipse-temurin-21 AS keycloak_source_builder
 ARG KEYCLOAK_VERSION
