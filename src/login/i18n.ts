@@ -6,9 +6,12 @@ const { useI18n, ofTypeI18n } = i18nBuilder
     .withExtraLanguages({
         xn: {
             label: "Arnie",
-            getMessages: async () => ({
-                default: {} as any
-            })
+            getMessages: () => import("./i18.xn")
+        }
+    })
+    .withCustomTranslations({
+        en: {
+            locale_xn: "Arnie",
         }
     })
     .build()
