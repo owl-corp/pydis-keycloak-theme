@@ -27,7 +27,7 @@ RUN apt-get update && \
     apt-get install -y openjdk-17-jdk && \
     apt-get install -y maven;
 RUN npm install -g pnpm
-COPY package.json pnpm-lock.yaml /opt/app/
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml /opt/app/
 WORKDIR /opt/app
 RUN pnpm install
 COPY . .
