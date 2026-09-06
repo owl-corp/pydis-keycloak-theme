@@ -29,8 +29,9 @@ RUN apt-get update && \
 RUN npm install -g pnpm
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml /opt/app/
 WORKDIR /opt/app
-RUN pnpm install
+RUN pnpm install --ignore-scripts
 COPY . .
+RUN pnpm keycloakify sync-extensions
 RUN pnpm run build-keycloak-theme
 
 WORKDIR /tmp/provider-build
